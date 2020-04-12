@@ -1,1 +1,5 @@
 node_modules/*
+gta_sa.exe
+package-lock.json
+node_modules
+version_history.json

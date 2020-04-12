@@ -1,0 +1,23 @@
+{
+    "name": "sampfixer",
+    "version": "1.0.0",
+    "description": "Fixed GTA:SA ENB Issues in one swoop.",
+    "main": "main.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "chalk": "^4.0.0",
+        "rand-token": "^1.0.1",
+        "regedit": "^3.0.3"
+    },
+    "prettier": {
+        "tabWidth": 4,
+        "singleQuote": true,
+        "semi": true,
+        "printWidth": 120
+    },
+    "bin": "bin.js"
+}
