@@ -28,6 +28,8 @@ I cannot stress enough that you must read about using this simple program.
 
 6. Then type `node ./main.js`
 
+![](https://i.imgur.com/i5TSQFs.jpg)
+
 That's it! The rest will be taken care of and you should have ENBs running properly after this.
 Granted you know what you're doing.
 
