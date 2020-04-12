@@ -16,7 +16,7 @@ I cannot stress enough that you must read about using this simple program.
 
 ![](https://i.imgur.com/8OUIhUT.jpg)
 
-4. Open a PowerShell or CommandPrompt in that directory.
+4. Open a PowerShell or CommandPrompt in that the `gtasa/sampFixer` directory.
 
 5. Type `npm install`
 
