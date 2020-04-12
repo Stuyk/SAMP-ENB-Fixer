@@ -26,7 +26,8 @@ I cannot stress enough that you must read about using this simple program.
 
 5. Type `npm install`
 
-6. Then type `node ./main.js`
+6. Powershell Type: `node ./main.js`
+6. CMD Type: `node main.js`
 
 ![](https://i.imgur.com/i5TSQFs.jpg)
 
