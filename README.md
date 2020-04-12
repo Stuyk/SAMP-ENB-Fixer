@@ -2,6 +2,12 @@
 
 ---
 
+You should use this script if Windows 10 GTA:SA ENBs are not working for you.
+What this does is renames your .exe to a non-standard .exe as well as removes deprecated registry entries.
+This is required for any windows 10 GTA:SA ENBs to work for GTA:SA.
+
+---
+
 I cannot stress enough that you must read about using this simple program.
 
 1. Install NodeJS v13+
