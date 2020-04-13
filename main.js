@@ -22,9 +22,11 @@ async function runProcess() {
 
     const fileExists = fs.existsSync(`../gta_sa.exe`);
     if (!fileExists) {
-        errorStatement = `Failed to find 'gta_sa.exe' in the path directory below this file.`;
-        console.log(chalk.redBright(errorStatement));
-        process.exit(1);
+        console.log(chalk.redBright(`Failed to find 'gta_sa.exe' in the path directory below this file.`));
+        console.log(chalk.redBright(`The process will now exit...`));
+        setTimeout(() => {
+            process.exit(1);
+        }, 5000);
     }
 
     console.log(chalk.cyanBright(`Found EXE file. \r\n`));
@@ -76,8 +78,11 @@ async function runProcess() {
         }
     }
 
-    console.log(chalk.cyanBright(`Setup complete. Install any ENB or ReShade from here.`));
-    process.exit(1);
+    console.log(chalk.cyanBright(`Setup complete. Install any ENB or ReShade from here.\r\n`));
+    console.log(chalk.cyanBright(`The process will now exit.`));
+    setTimeout(() => {
+        process.exit(1);
+    }, 5000);
 }
 
 function startProcess() {
