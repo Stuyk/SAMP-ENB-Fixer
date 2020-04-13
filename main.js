@@ -1,6 +1,5 @@
 const fs = require('fs');
 const chalk = require('chalk');
-const regedit = require('regedit');
 const randomToken = require('rand-token');
 const path = require('path');
 const { exec, execSync } = require('child_process');
@@ -16,8 +15,6 @@ const registryPathsToRemove = [
 
 let sid;
 async function runProcess() {
-    let statusMessage;
-    let errorStatement;
     console.log(chalk.cyanBright(`Looking for 'gta_sa.exe' in '${__dirname.replace('sampFixer\\', '')}' \r\n`));
 
     const fileExists = fs.existsSync(`../gta_sa.exe`);
@@ -56,12 +53,12 @@ async function runProcess() {
     fs.writeFileSync('./version_history.json', JSON.stringify(newFileEntry, null, '\t'));
 
     console.log(chalk.cyanBright(`Beginning Registry Updates. Please respond to prompt. (Yes to Patch)\r\n`));
-    const gtaSAPath = __dirname.replace('sampFixer', newFileEntry.fileName);
+    const gtaSAPath = process.cwd().replace('sampFixer', newFileEntry.fileName);
 
+    console.log(gtaSAPath);
     execSync(`REG add "HKEY_CURRENT_USER\\Software\\SAMP" /v gta_sa_exe /d "${gtaSAPath}"`, { stdio: 'inherit' });
 
     console.log(chalk.cyanBright(`Updating registry entries for ENB issues.\r\n`));
-
     console.log(chalk.yellowBright(`You will be prompted below.`));
     console.log(chalk.yellowBright(`We will need to delete a few registry entries.`));
     console.log(chalk.yellowBright(`Please type YES below to confirm the deletion of specific registry entries.`));
@@ -76,6 +73,10 @@ async function runProcess() {
         } catch (err) {
             console.log(chalk.cyanBright(`Entry not found. Skipping. \r\n`));
         }
+    }
+
+    if (fs.existsSync('null')) {
+        fs.unlinkSync('null');
     }
 
     console.log(chalk.cyanBright(`Setup complete. Install any ENB or ReShade from here.\r\n`));
