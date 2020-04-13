@@ -1,37 +1,40 @@
-# Readme & How To Use This
-
----
+### Using this Software
 
 You should use this script if Windows 10 GTA:SA ENBs are not working for you.
 What this does is renames your .exe to a non-standard .exe as well as removes deprecated registry entries.
 This is required for any windows 10 GTA:SA ENBs to work for GTA:SA.
 
----
+### The Easy Way
 
-I cannot stress enough that you must read about using this simple program.
+You should see a releases tab in Github.
 
-1. Install NodeJS v13+
+You can download a pre-compiled `.exe` from there.
 
--   [https://nodejs.org/dist/v13.12.0/node-v13.12.0-x64.msi](https://nodejs.org/dist/v13.12.0/node-v13.12.0-x64.msi)
+Simply create a folder called `sampFixer` in your GTA:SA folder.
 
-2. Download the source files from this repository.
+Place the `.exe` file inside.
 
-![](https://i.imgur.com/xfUzqFk.jpg)
+Run it.
 
-3. Go into your GTA:SA Directory and create a folder called `sampFixer`. It's CaSeSeNsItIvE
+Follow the on-screen instructions.
 
-![](https://i.imgur.com/8OUIhUT.jpg)
+### The Hard Way
 
-4. Open a PowerShell or CommandPrompt in that the `gtasa/sampFixer` directory.
+```
+Install NodeJS v13+
+https://nodejs.org/dist/v13.12.0/node-v13.12.0-x64.msi
 
-5. Type `npm install`
+Download the source files from this repository.
 
-6. Powershell Type: `node ./main.js`
-6. CMD Type: `node main.js`
+Go into your GTA:SA Directory and create a folder called `sampFixer`. It's CaSeSeNsItIvE
 
-![](https://i.imgur.com/i5TSQFs.jpg)
+Open a PowerShell or CommandPrompt in that the `gtasa/sampFixer` directory.
 
-That's it! The rest will be taken care of and you should have ENBs running properly after this.
-Granted you know what you're doing.
+Type `npm install`
 
-Remember to install mods one at a time when modding.
+In the same directory you are going to open a Command Prompt or Powershell.
+Powershell: `node ./main.js`
+Command Prompt: `node main.js`
+
+Follow the on-screen instructions.
+```
