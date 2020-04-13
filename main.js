@@ -18,19 +18,17 @@ let sid;
 async function runProcess() {
     let statusMessage;
     let errorStatement;
-    statusMessage = `Looking for 'gta_sa.exe' in the folder below this one.`;
-    console.log(chalk.greenBright(statusMessage));
+    console.log(chalk.cyanBright(`Looking for 'gta_sa.exe' in '${__dirname.replace('sampFixer\\', '')}' \r\n`));
 
     const fileExists = fs.existsSync(`../gta_sa.exe`);
-
     if (!fileExists) {
         errorStatement = `Failed to find 'gta_sa.exe' in the path directory below this file.`;
         console.log(chalk.redBright(errorStatement));
         process.exit(1);
     }
 
-    statusMessage = `'gta_sa.exe' is being backed up into '${__dirname}'`;
-    console.log(chalk.greenBright(statusMessage));
+    console.log(chalk.cyanBright(`Found EXE file. \r\n`));
+    console.log(chalk.cyanBright(`'gta_sa.exe' is now being backed up into '${__dirname}' \r\n`));
 
     fs.copyFileSync(`../gta_sa.exe`, './gta_sa.exe');
 
@@ -39,8 +37,7 @@ async function runProcess() {
         fileName: `${randomToken.generate(8)}_gta_sa.exe`,
     };
 
-    statusMessage = `Linking new new .exe to GTA:SA & SAMP. Using: ${newFileEntry.fileName}`;
-    console.log(chalk.magentaBright(statusMessage));
+    console.log(chalk.cyanBright(`Linking New EXE to SAMP... using: ${newFileEntry.fileName} \r\n`));
 
     if (trackerFile) {
         const oldFileData = JSON.parse(fs.readFileSync('./version_history.json'));
@@ -56,28 +53,40 @@ async function runProcess() {
     fs.copyFileSync(`./gta_sa.exe`, `../${newFileEntry.fileName}`);
     fs.writeFileSync('./version_history.json', JSON.stringify(newFileEntry, null, '\t'));
 
-    statusMessage = `Updating registry entries...`;
-    console.log(chalk.magentaBright(statusMessage));
+    console.log(chalk.cyanBright(`Beginning Registry Updates. Please respond to prompt. (Yes to Patch)\r\n`));
     const gtaSAPath = __dirname.replace('sampFixer', newFileEntry.fileName);
 
     execSync(`REG add "HKEY_CURRENT_USER\\Software\\SAMP" /v gta_sa_exe /d "${gtaSAPath}"`, { stdio: 'inherit' });
 
-    statusMessage = `New GTA_SA was linked. Updating registry entires to fix ENB versioning.`;
-    console.log(chalk.greenBright(statusMessage));
+    console.log(chalk.cyanBright(`Updating registry entries for ENB issues.\r\n`));
+
+    console.log(chalk.yellowBright(`You will be prompted below.`));
+    console.log(chalk.yellowBright(`We will need to delete a few registry entries.`));
+    console.log(chalk.yellowBright(`Please type YES below to confirm the deletion of specific registry entries.`));
 
     for (let i = 0; i < registryPathsToRemove.length; i++) {
         const regPath = registryPathsToRemove[i].replace('__SID__', sid);
-        exec(`REG Delete "${regPath}"`, (error, stdout, stderr) => {
-            console.log(stderr);
-        });
+        try {
+            execSync(`REG Query "${regPath}" > null`, { stdio: 'inherit' });
+            console.log(chalk.cyanBright(`Asking permission to delete:\r\n`));
+            execSync(`REG Delete "${regPath}"`, { stdio: 'inherit' });
+            console.log(chalk.cyanBright(`Entry was removed.\r\n`));
+        } catch (err) {
+            console.log(chalk.cyanBright(`Entry not found. Skipping. \r\n`));
+        }
     }
 
-    statusMessage = `Finished. Exiting. Please run SAMP.`;
-    console.log(chalk.greenBright(statusMessage));
+    console.log(chalk.cyanBright(`Setup complete. Install any ENB or ReShade from here.`));
     process.exit(1);
 }
 
 function startProcess() {
+    console.log(chalk.cyanBright(`-------------------------------------------`));
+    console.log(chalk.cyanBright(`GTA:SA SAMP Enb Patcher`));
+    console.log(chalk.cyanBright(`-------------------------------------------`));
+    console.log(chalk.cyanBright(`Created by Stuyk @ https://github.com/stuyk`));
+    console.log(chalk.cyanBright(`-------------------------------------------\r\n`));
+
     exec(`wmic useraccount where name='${username}' get sid`, (error, stdout, stderr) => {
         sid = stdout
             .replace('SID', '')
